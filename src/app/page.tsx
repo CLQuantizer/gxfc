@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 
 const BASE_URL = "https://hao.gongxifacai.win/";
+// const BASE_URL = "http://localhost:3000/";
 const messageA = "Image copied(图片已复制)";
 const messageB = "Image URL copied(图片链接已复制)";
 
@@ -18,7 +19,6 @@ async function copyImgToClipboard(imgUrl: string) {
     ]);
     alert(input + "\n" + messageA);
   } catch (err) {
-    // just copy url
     try {
       await navigator.clipboard.writeText(imgUrl);
       alert(input + "\n" + messageB);
@@ -31,9 +31,9 @@ async function copyImgToClipboard(imgUrl: string) {
 
 const CopyableImage = ({ src, alt }: { src: string, alt: string}) => {
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center gap-2">
       <img src={src} alt={alt} className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"/>
-      <Button className="w-12" onClick={async () => await copyImgToClipboard(BASE_URL + src)}>copy image</Button>
+      <Button className="w-24" onClick={async () => await copyImgToClipboard(BASE_URL + src)}>copy image</Button>
     </div>
   );
 };
@@ -74,10 +74,10 @@ export default function Home() {
           {[...Array(6)].map((x, i) => {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
-              return <img src={i+".png"} alt="gong xi fa cai" role="button" aria-label="Copy image to clipboard" tabIndex={0}
-              onClick={async () => await copyImgToClipboard(BASE_URL + i +".png")}
-              className="animate-slow-bounce backdrop-shadow
-               mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
+              return (
+              <div className="animate-slow-bounce backdrop-shadow mt-12 hover:cursor-grab p-0.5 rounded">
+                <CopyableImage src={i+".png"} alt="gong xi fa cai" key={i} />
+              </div>) 
           } else {
             return (
               <CopyableImage src={i+".png"} alt="gong xi fa cai" key={i} />
