@@ -6,7 +6,8 @@ const BASE_URL = "https://hao.gongxifacai.win/";
 const messageA = "Image copied(图片已复制)";
 const messageB = "Image URL copied(图片链接已复制)";
 
-async function copyImgToClipboard(imgUrl: string, input: string) {
+async function copyImgToClipboard(imgUrl: string) {
+  const input = getRandomStringFromArray(randomGreetings);
   try {
     const data = await fetch(imgUrl);
     const blob = await data.blob();
