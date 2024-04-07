@@ -42,8 +42,8 @@ const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: s
   );
 };
 
-const shareLove = () => {
-  copy(BASE_URL);
+const shareLove = async() => {
+  await navigator.clipboard.writeText(BASE_URL);
   alert("Hello, here is my most sincere greeting!(你好,这是我最真诚的问候!) \n"+
    `${BASE_URL} copied to clipboard!(本站网址已复制!)`);
 }
@@ -72,7 +72,7 @@ const currentYear = new Date().getFullYear();
 export default function Home() {
   return (
     <div className="flex flex-col w-full mt-2 gap-4 p-2 transition-all duration-300">
-      <Button className="w-full" onClick={async () => shareLove()}>
+      <Button className="w-full" onClick={async () => await shareLove()}>
         Click me to share more love</Button>
         <div className="grid m:grid-cols-2 lg:grid-cols-4">
           {[...Array(6)].map((x, i) => {
