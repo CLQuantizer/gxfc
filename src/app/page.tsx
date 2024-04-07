@@ -1,8 +1,36 @@
 'use client';
 import { Button } from "@/components/ui/button";
+import copy from 'clipboard-copy';
+
+const BASE_URL = "https:hao.gongxifacai.win/";
+const message = "Image url copied to clipboard!(图片网址已复制到剪贴板!) ";
+
+const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: string }) => {
+  const handleCopy = () => {
+    //  line breaker between message and input
+    alert(input + "\n" + message);
+    copy(BASE_URL + src);
+    // Optional: Provide feedback to the user - e.g., a small notification 
+  };
+
+  return (
+    <img 
+      src={src} 
+      alt={alt} 
+      onClick={handleCopy} 
+      className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"
+    />
+  );
+};
+
 
 const handleClicked = (input:string) => {
   alert(input);
+}
+
+const handleClickedCopy = (input:string, src:string) => {
+  copy(BASE_URL + src);
+  alert(input + "\n" + message);
 }
 
 const getRandomStringFromArray = (array: string[]) => {
@@ -36,14 +64,13 @@ export default function Home() {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
               return <img src={i+".jpg"} alt="gong xi fa cai" 
-              onClick={async () => handleClicked(getRandomStringFromArray(randomGreetings))}
+              onClick={async () => handleClickedCopy(getRandomStringFromArray(randomGreetings), i+".jpg")}
               className="animate-slow-bounce backdrop-shadow
                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
             return (
-              <img src={i+".jpg"} alt={getRandomStringFromArray(randomGreetings)}
-              onClick={async () => handleClicked(getRandomStringFromArray(randomGreetings))}
-              className="hover:scale-105 hover:animate-slow-bounce hover:cursor-grab p-0.5 rounded-lg" key={i} />
+              <CopyableImage src={i+".jpg"} alt={getRandomStringFromArray(randomGreetings)} 
+              input={getRandomStringFromArray(randomGreetings)} key={i} />
           )}
         })}
         </div>
