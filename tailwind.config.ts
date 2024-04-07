@@ -80,7 +80,6 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "slow-spin": "spin 3s linear infinite",
         "pulse-strong": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"
-        }
       },
     },
   },

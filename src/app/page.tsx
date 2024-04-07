@@ -17,7 +17,7 @@ export default function Home() {
             // i%3!=0 or i<2
             if (i%3 !== 0 || i<2) {
               return <img src={i+".jpg"} alt="gong xi fa cai" 
-              className="animate-pulse hover:scale-105 p-0.5 rounded" key={i} />
+              className="hover:scale-105 p-0.5 rounded" key={i} />
           } else {
             return (
               <img src={i+".jpg"} alt="gong xi fa cai" 
