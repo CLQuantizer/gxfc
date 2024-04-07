@@ -17,7 +17,9 @@ async function copyImgToClipboard(imgUrl: string) {
     ]);
     console.log('Image copied.');
   } catch (err) {
-    console.error('Failed to copy: ', err);
+    // just copy url
+    copy(imgUrl);
+    console.error('Failed on image, just copying url:', err);
   }
 }
 
