@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import copy from 'clipboard-copy';
 
-const BASE_URL = "https:hao.gongxifacai.win/";
+const BASE_URL = "https://hao.gongxifacai.win/";
 // const BASE_URL = "http://localhost:3000/";
 const message = "Image copied to clipboard!(图片已复制到剪贴板!) ";
 
