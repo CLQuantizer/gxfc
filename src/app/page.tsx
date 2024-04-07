@@ -29,7 +29,7 @@ async function copyImgToClipboard(imgUrl: string) {
 const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: string }) => {
   const handleCopy = async () => {
     // copy(BASE_URL + src);
-    await copyImgToClipboard(BASE_URL + src, input);
+    await copyImgToClipboard(BASE_URL + src);
     // Optional: Provide feedback to the user - e.g., a small notification 
   };
 
@@ -80,7 +80,7 @@ export default function Home() {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
               return <img src={i+".png"} alt="gong xi fa cai" role="button" aria-label="Copy image to clipboard" tabIndex={0}
-              onClick={async () => await copyImgToClipboard(BASE_URL + i +".png", getRandomStringFromArray(randomGreetings))}
+              onClick={async () => await copyImgToClipboard(BASE_URL + i +".png")}
               className="animate-slow-bounce backdrop-shadow
                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
@@ -102,7 +102,7 @@ export default function Home() {
               // i%3!=0 or i<2
               if (x==1 || x==6) {
                 return <img src={x+".png"} alt="gong xi fa cai" role="button" aria-label="Copy image to clipboard" tabIndex={0}
-                onClick={async () => await copyImgToClipboard(BASE_URL + x +".png", getRandomStringFromArray(randomGreetings))}
+                onClick={async () => await copyImgToClipboard(BASE_URL + x +".png")}
                 className="animate-slow-bounce backdrop-shadow
                 mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
             } else {
