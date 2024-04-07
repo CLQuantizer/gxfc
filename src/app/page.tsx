@@ -35,7 +35,7 @@ const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: s
   return (
     <img 
       src={src} 
-      alt={alt} 
+      alt={alt} role="button" aria-label="Copy image to clipboard" tabIndex={0}
       onClick={async () => await handleCopy()}
       className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"
     />
@@ -78,7 +78,7 @@ export default function Home() {
           {[...Array(6)].map((x, i) => {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
-              return <img src={i+".png"} alt="gong xi fa cai" 
+              return <img src={i+".png"} alt="gong xi fa cai" role="button" aria-label="Copy image to clipboard" tabIndex={0}
               onClick={async () => await copyImgToClipboard(BASE_URL + i +".png", getRandomStringFromArray(randomGreetings))}
               className="animate-slow-bounce backdrop-shadow
                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
@@ -100,7 +100,7 @@ export default function Home() {
         {[7,8,9,10,11,12,13].map((x, i) => {
               // i%3!=0 or i<2
               if (x==1 || x==6) {
-                return <img src={x+".png"} alt="gong xi fa cai" 
+                return <img src={x+".png"} alt="gong xi fa cai" role="button" aria-label="Copy image to clipboard" tabIndex={0}
                 onClick={async () => await copyImgToClipboard(BASE_URL + x +".png", getRandomStringFromArray(randomGreetings))}
                 className="animate-slow-bounce backdrop-shadow
                 mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
