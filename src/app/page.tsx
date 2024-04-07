@@ -15,9 +15,10 @@ export default function Home() {
         <div className="grid m:grid-cols-2 lg:grid-cols-4">
           {[...Array(8)].map((x, i) => {
             // i%3!=0 or i<2
-            if (i==1 || i%3 !== 0 && i>3) {
+            if (i==1 || i==6) {
               return <img src={i+".jpg"} alt="gong xi fa cai" 
-              className="animate-slow-spin hover:scale-105 p-0.5 rounded" key={i} />
+              onClick={async () => handleClicked("Gong xi fa cai!")}
+              className="animate-slow-spin hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
             return (
               <img src={i+".jpg"} alt="gong xi fa cai" 
