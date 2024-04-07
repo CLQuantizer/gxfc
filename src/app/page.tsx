@@ -28,8 +28,6 @@ async function copyImgToClipboard(imgUrl: string, input: string) {
 
 const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: string }) => {
   const handleCopy = async () => {
-    //  line breaker between message and input
-    alert(input + "\n" + messageA);
     // copy(BASE_URL + src);
     await copyImgToClipboard(BASE_URL + src, input);
     // Optional: Provide feedback to the user - e.g., a small notification 
@@ -45,15 +43,10 @@ const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: s
   );
 };
 
-
-const handleClicked = (input:string) => {
-  alert(input);
-}
-
 const shareLove = () => {
   copy(BASE_URL);
   alert("Hello, here is my most sincere greeting!(你好,这是我最真诚的问候!) \n"+
-   "This site's URL copied to clipboard!(本站网址已复制到剪贴板!)");
+   `${BASE_URL} copied to clipboard!(本站网址已复制!)`);
 }
 
 const handleClickedCopy = async (input:string, src:string) => {
@@ -133,7 +126,7 @@ export default function Home() {
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
           </iframe>
       </div> 
-        <Button className="w-full" onClick={async () => handleClicked("Than kyou! You have now been deeply thanked!")} >
+        <Button className="w-full" onClick={() => alert("Than kyou! You have now been deeply thanked!")} >
           Click me to get a thank you</Button>
           <div className="text-center opacity-30">TradAesthetics (傳統美感) Inc. © {currentYear}</div>
     </div>
