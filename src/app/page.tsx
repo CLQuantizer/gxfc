@@ -3,13 +3,31 @@ import { Button } from "@/components/ui/button";
 import copy from 'clipboard-copy';
 
 const BASE_URL = "https:hao.gongxifacai.win/";
+// const BASE_URL = "http://localhost:3000/";
 const message = "Image url copied to clipboard!(图片网址已复制到剪贴板!) ";
 
+async function copyImgToClipboard(imgUrl: string) {
+  try {
+    const data = await fetch(imgUrl);
+    const blob = await data.blob();
+    console.log('Image fetched, url:', imgUrl);
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob,
+      }),
+    ]);
+    console.log('Image copied.');
+  } catch (err) {
+    console.error('Failed to copy: ', err);
+  }
+}
+
 const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: string }) => {
-  const handleCopy = () => {
+  const handleCopy = async () => {
     //  line breaker between message and input
     alert(input + "\n" + message);
-    copy(BASE_URL + src);
+    // copy(BASE_URL + src);
+    await copyImgToClipboard(BASE_URL + src);
     // Optional: Provide feedback to the user - e.g., a small notification 
   };
 
@@ -17,7 +35,7 @@ const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: s
     <img 
       src={src} 
       alt={alt} 
-      onClick={handleCopy} 
+      onClick={async () => await handleCopy()}
       className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"
     />
   );
@@ -34,8 +52,9 @@ const shareLove = () => {
    "This site's URL copied to clipboard!(本站网址已复制到剪贴板!)");
 }
 
-const handleClickedCopy = (input:string, src:string) => {
-  copy(BASE_URL + src);
+const handleClickedCopy = async (input:string, src:string) => {
+  // copy(BASE_URL + src);
+  await copyImgToClipboard(BASE_URL + src);
   alert(input + "\n" + message);
 }
 
@@ -69,13 +88,13 @@ export default function Home() {
           {[...Array(6)].map((x, i) => {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
-              return <img src={i+".jpg"} alt="gong xi fa cai" 
-              onClick={async () => handleClickedCopy(getRandomStringFromArray(randomGreetings), i+".jpg")}
+              return <img src={i+".png"} alt="gong xi fa cai" 
+              onClick={async () => handleClickedCopy(getRandomStringFromArray(randomGreetings), i+".png")}
               className="animate-slow-bounce backdrop-shadow
                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
             return (
-              <CopyableImage src={i+".jpg"} alt={getRandomStringFromArray(randomGreetings)} 
+              <CopyableImage src={i+".png"} alt="gong xi fa cai"
               input={getRandomStringFromArray(randomGreetings)} key={i} />
           )}
         })}
@@ -91,13 +110,13 @@ export default function Home() {
         {[7,8,9,10,11,12,13].map((x, i) => {
               // i%3!=0 or i<2
               if (x==1 || x==6) {
-                return <img src={x+".jpg"} alt="gong xi fa cai" 
+                return <img src={x+".png"} alt="gong xi fa cai" 
                 onClick={async () => handleClicked(getRandomStringFromArray(randomGreetings))}
                 className="animate-slow-bounce backdrop-shadow
                 mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
             } else {
               return (
-                <img src={x+".jpg"} alt={getRandomStringFromArray(randomGreetings)}
+                <img src={x+".png"} alt="gong xi fa cai"
                 onClick={async () => handleClicked(getRandomStringFromArray(randomGreetings))}
                 className="hover:scale-105 hover:animate-slow-bounce hover:cursor-grab p-0.5 rounded-lg" key={i} />
             )}
