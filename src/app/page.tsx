@@ -4,7 +4,7 @@ import copy from 'clipboard-copy';
 
 const BASE_URL = "https:hao.gongxifacai.win/";
 // const BASE_URL = "http://localhost:3000/";
-const message = "Image url copied to clipboard!(图片网址已复制到剪贴板!) ";
+const message = "Image copied to clipboard!(图片已复制到剪贴板!) ";
 
 async function copyImgToClipboard(imgUrl: string) {
   try {
