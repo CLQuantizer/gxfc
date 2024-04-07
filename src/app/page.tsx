@@ -16,6 +16,7 @@ export default function Home() {
         </div>
         <Button className="w-full" onClick={async () => handleClicked("than kyou")} >
           Click me to thank you</Button>
+          <div>Nice</div>
     </div>
   );
 }
