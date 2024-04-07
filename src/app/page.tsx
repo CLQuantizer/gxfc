@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import copy from 'clipboard-copy';
 
 const BASE_URL = "https://hao.gongxifacai.win/";
-const message = "Image copied not for phone,(图片已复制, 手机不支持)";
+const messageA = "Image copied(图片已复制)";
+const messageB = "Image URL copied(图片链接已复制)";
 
-async function copyImgToClipboard(imgUrl: string) {
+async function copyImgToClipboard(imgUrl: string, input: string) {
   try {
     const data = await fetch(imgUrl);
     const blob = await data.blob();
@@ -16,9 +17,11 @@ async function copyImgToClipboard(imgUrl: string) {
       }),
     ]);
     console.log('Image copied.');
+    alert(input + "\n" + messageA);
   } catch (err) {
     // just copy url
     copy(imgUrl);
+    alert(input + "\n" + messageB);
     console.error('Failed on image, just copying url:', err);
   }
 }
@@ -26,9 +29,9 @@ async function copyImgToClipboard(imgUrl: string) {
 const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: string }) => {
   const handleCopy = async () => {
     //  line breaker between message and input
-    alert(input + "\n" + message);
+    alert(input + "\n" + messageA);
     // copy(BASE_URL + src);
-    await copyImgToClipboard(BASE_URL + src);
+    await copyImgToClipboard(BASE_URL + src, input);
     // Optional: Provide feedback to the user - e.g., a small notification 
   };
 
@@ -55,8 +58,8 @@ const shareLove = () => {
 
 const handleClickedCopy = async (input:string, src:string) => {
   // copy(BASE_URL + src);
-  await copyImgToClipboard(BASE_URL + src);
-  alert(input + "\n" + message);
+  await copyImgToClipboard(BASE_URL + src, input);
+  alert(input + "\n" + messageA);
 }
 
 const getRandomStringFromArray = (array: string[]) => {
