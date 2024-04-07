@@ -1,6 +1,5 @@
 'use client';
 import { Button } from "@/components/ui/button";
-import copy from 'clipboard-copy';
 
 const BASE_URL = "https://hao.gongxifacai.win/";
 const messageA = "Image copied(图片已复制)";
@@ -20,7 +19,7 @@ async function copyImgToClipboard(imgUrl: string) {
     alert(input + "\n" + messageA);
   } catch (err) {
     // just copy url
-    copy(imgUrl);
+    await navigator.clipboard.writeText(imgUrl);
     alert(input + "\n" + messageB);
     console.error('Failed on image, just copying url:', err);
   }
