@@ -19,9 +19,13 @@ async function copyImgToClipboard(imgUrl: string) {
     alert(input + "\n" + messageA);
   } catch (err) {
     // just copy url
-    await navigator.clipboard.writeText(imgUrl);
-    alert(input + "\n" + messageB);
-    console.error('Failed on image, just copying url:', err);
+    try {
+      await navigator.clipboard.writeText(imgUrl);
+      alert(input + "\n" + messageB);
+      console.error('Failed on image, just copying url:', err);
+    } catch (e) {
+      alert('Failed to copy image and url:' + e);
+    }
   }
 }
 
