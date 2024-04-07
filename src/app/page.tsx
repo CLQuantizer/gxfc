@@ -18,11 +18,11 @@ export default function Home() {
             if (i==1 || i==6) {
               return <img src={i+".jpg"} alt="gong xi fa cai" 
               onClick={async () => handleClicked("Gong xi fa cai!")}
-              className="animate-slow-spin hover:cursor-grab p-0.5 rounded" key={i} />
+              className="animate-slow-spin mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
             return (
               <img src={i+".jpg"} alt="gong xi fa cai" 
-              className="hover:scale-105 p-0.5 rounded-full" key={i} />
+              className="hover:scale-105 hover:animate-bounce p-0.5 rounded-full" key={i} />
           )}
         })}
         </div>
