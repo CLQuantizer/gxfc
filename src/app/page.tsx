@@ -15,13 +15,13 @@ export default function Home() {
         <div className="grid m:grid-cols-2 lg:grid-cols-4">
           {[...Array(8)].map((x, i) => {
             // i%3!=0 or i<2
-            if (i%3 !== 0 || i<2) {
+            if (i==1 || i%3 !== 0 && i>3) {
               return <img src={i+".jpg"} alt="gong xi fa cai" 
-              className="hover:scale-105 p-0.5 rounded" key={i} />
+              className="animate-slow-spin hover:scale-105 p-0.5 rounded" key={i} />
           } else {
             return (
               <img src={i+".jpg"} alt="gong xi fa cai" 
-              className="animate-slow-spin 3s hover:scale-105 p-0.5 rounded-full" key={i} />
+              className="hover:scale-105 p-0.5 rounded-full" key={i} />
           )}
         })}
         </div>
