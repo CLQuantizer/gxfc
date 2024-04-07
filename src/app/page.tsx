@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button";
 import copy from 'clipboard-copy';
 
 const BASE_URL = "https://hao.gongxifacai.win/";
-// const BASE_URL = "http://localhost:3000/";
-const message = "Image copied to clipboard (not for phone)!!(图片已复制到剪贴板!)(手机不支持)";
+const message = "Image copied not for phone,(图片已复制, 手机不支持)";
 
 async function copyImgToClipboard(imgUrl: string) {
   try {
