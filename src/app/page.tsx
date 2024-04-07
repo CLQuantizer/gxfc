@@ -9,13 +9,21 @@ const currentYear = new Date().getFullYear();
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full mt-2 gap-2 p-2">
+    <div className="flex flex-col w-full mt-2 gap-4 p-2 transition-all duration-300">
       <Button className="w-full" onClick={async () => handleClicked("Hello, here is my most sincere greeting!")} >
         Click me to get greeted</Button>
         <div className="grid m:grid-cols-2 lg:grid-cols-4">
-          {[...Array(8)].map((x, i) =>
-          <img src={i+".jpg"} alt="gong xi fa cai" className="p-0.5 rounded" key={i} />
-  )}
+          {[...Array(8)].map((x, i) => {
+            // i%3!=0 or i<2
+            if (i%3 !== 0 || i<2) {
+              return <img src={i+".jpg"} alt="gong xi fa cai" 
+              className="animate-pulse hover:scale-105 p-0.5 rounded" key={i} />
+          } else {
+            return (
+              <img src={i+".jpg"} alt="gong xi fa cai" 
+              className="animate-slow-spin 3s hover:scale-105 p-0.5 rounded-full" key={i} />
+          )}
+        })}
         </div>
         <Button className="w-full" onClick={async () => handleClicked("Than kyou! You have now been deeply thanked!")} >
           Click me to thank you</Button>
