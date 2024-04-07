@@ -29,20 +29,12 @@ async function copyImgToClipboard(imgUrl: string) {
   }
 }
 
-const CopyableImage = ({ src, alt, input }: { src: string, alt: string, input: string }) => {
-  const handleCopy = async () => {
-    // copy(BASE_URL + src);
-    await copyImgToClipboard(BASE_URL + src);
-    // Optional: Provide feedback to the user - e.g., a small notification 
-  };
-
+const CopyableImage = ({ src, alt }: { src: string, alt: string}) => {
   return (
-    <img 
-      src={src} 
-      alt={alt} role="button" aria-label="Copy image to clipboard" tabIndex={0}
-      onClick={async () => await handleCopy()}
-      className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"
-    />
+    <div>
+      <img src={src} alt={alt} className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"/>
+      <Button className="w-12" onClick={async () => await copyImgToClipboard(BASE_URL + src)}>copy image</Button>
+    </div>
   );
 };
 
@@ -88,8 +80,7 @@ export default function Home() {
                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
             return (
-              <CopyableImage src={i+".png"} alt="gong xi fa cai"
-              input={getRandomStringFromArray(randomGreetings)} key={i} />
+              <CopyableImage src={i+".png"} alt="gong xi fa cai" input={getRandomStringFromArray(randomGreetings)} key={i} />
           )}
         })}
         </div>
@@ -101,18 +92,9 @@ export default function Home() {
           </iframe>
       </div> 
       <div className="grid m:grid-cols-2 lg:grid-cols-4">
-        {[7,8,9,10,11,12,13].map((x, i) => {
-              // i%3!=0 or i<2
-              if (x==1 || x==6) {
-                return <img src={x+".png"} alt="gong xi fa cai" role="button" aria-label="Copy image to clipboard" tabIndex={0}
-                onClick={async () => await copyImgToClipboard(BASE_URL + x +".png")}
-                className="animate-slow-bounce backdrop-shadow
-                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
-            } else {
-              return (
+        {[7,8,9,10,11,12,13].map((x, i) => (
                 <CopyableImage src={x+".png"} alt="gong xi fa cai" input={getRandomStringFromArray(randomGreetings)} key={i} />
-            )}
-          })}
+            ))}
       </div>
       <div className="container mx-auto mb-16">
           <iframe className="w-full aspect-video" 
