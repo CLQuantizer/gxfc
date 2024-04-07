@@ -16,7 +16,6 @@ async function copyImgToClipboard(imgUrl: string, input: string) {
         [blob.type]: blob,
       }),
     ]);
-    console.log('Image copied.');
     alert(input + "\n" + messageA);
   } catch (err) {
     // just copy url
