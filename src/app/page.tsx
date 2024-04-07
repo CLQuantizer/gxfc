@@ -75,8 +75,9 @@ export default function Home() {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
               return (
-              <div className="animate-slow-bounce backdrop-shadow mt-12 hover:cursor-grab p-0.5 rounded">
-                <CopyableImage src={i+".png"} alt="gong xi fa cai" key={i} />
+              <div className="animate-slow-bounce backdrop-shadow mt-12 hover:cursor-grab p-0.5 rounded"
+                    key={i} >
+                <CopyableImage src={i+".png"} alt="gong xi fa cai"/>
               </div>) 
           } else {
             return (
