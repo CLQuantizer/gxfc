@@ -52,7 +52,6 @@ const shareLove = () => {
 const handleClickedCopy = async (input:string, src:string) => {
   // copy(BASE_URL + src);
   await copyImgToClipboard(BASE_URL + src, input);
-  alert(input + "\n" + messageA);
 }
 
 const getRandomStringFromArray = (array: string[]) => {
