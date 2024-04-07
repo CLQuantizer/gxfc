@@ -5,6 +5,8 @@ const handleClicked = (input:string) => {
   alert(input);
 }
 
+const currentYear = new Date().getFullYear();
+
 export default function Home() {
   return (
     <div className="flex flex-col w-full mt-2 gap-2 p-2">
@@ -17,7 +19,7 @@ export default function Home() {
         </div>
         <Button className="w-full" onClick={async () => handleClicked("Than kyou! You have now been deeply thanked!")} >
           Click me to thank you</Button>
-          <div className="text-center opacity-30">TradAesthetics Inc. 2024</div>
+          <div className="text-center opacity-30">TradAesthetics Inc. © {currentYear}</div>
     </div>
   );
 }
