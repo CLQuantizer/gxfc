@@ -49,11 +49,6 @@ const shareLove = () => {
    `${BASE_URL} copied to clipboard!(本站网址已复制!)`);
 }
 
-const handleClickedCopy = async (input:string, src:string) => {
-  // copy(BASE_URL + src);
-  await copyImgToClipboard(BASE_URL + src, input);
-}
-
 const getRandomStringFromArray = (array: string[]) => {
   return array[Math.floor(Math.random() * array.length)];
 }
@@ -85,7 +80,7 @@ export default function Home() {
             // i%3!=0 or i<2
             if (i==1 || i==6) {
               return <img src={i+".png"} alt="gong xi fa cai" 
-              onClick={async () => handleClickedCopy(getRandomStringFromArray(randomGreetings), i+".png")}
+              onClick={async () => await copyImgToClipboard(BASE_URL + i +".png", getRandomStringFromArray(randomGreetings))}
               className="animate-slow-bounce backdrop-shadow
                mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
           } else {
@@ -107,14 +102,12 @@ export default function Home() {
               // i%3!=0 or i<2
               if (x==1 || x==6) {
                 return <img src={x+".png"} alt="gong xi fa cai" 
-                onClick={async () => handleClickedCopy(getRandomStringFromArray(randomGreetings), x+".png")}
+                onClick={async () => await copyImgToClipboard(BASE_URL + x +".png", getRandomStringFromArray(randomGreetings))}
                 className="animate-slow-bounce backdrop-shadow
                 mt-12 hover:cursor-grab p-0.5 rounded" key={i} />
             } else {
               return (
-                <img src={x+".png"} alt="gong xi fa cai"
-                onClick={async () => handleClickedCopy(getRandomStringFromArray(randomGreetings), x+".png")}
-                className="hover:scale-105 hover:animate-slow-bounce hover:cursor-grab p-0.5 rounded-lg" key={i} />
+                <CopyableImage src={x+".png"} alt="gong xi fa cai" input={getRandomStringFromArray(randomGreetings)} key={i} />
             )}
           })}
       </div>
