@@ -28,6 +28,12 @@ const handleClicked = (input:string) => {
   alert(input);
 }
 
+const shareLove = () => {
+  copy(BASE_URL);
+  alert("Hello, here is my most sincere greeting!(你好,这是我最真诚的问候!) \n"+
+   "This site's URL copied to clipboard!(本站网址已复制到剪贴板!)");
+}
+
 const handleClickedCopy = (input:string, src:string) => {
   copy(BASE_URL + src);
   alert(input + "\n" + message);
@@ -57,8 +63,8 @@ const currentYear = new Date().getFullYear();
 export default function Home() {
   return (
     <div className="flex flex-col w-full mt-2 gap-4 p-2 transition-all duration-300">
-      <Button className="w-full" onClick={async () => handleClicked("Hello, here is my most sincere greeting!")} >
-        Click me to get greeted</Button>
+      <Button className="w-full" onClick={async () => shareLove()}>
+        Click me to share more love</Button>
         <div className="grid m:grid-cols-2 lg:grid-cols-4">
           {[...Array(6)].map((x, i) => {
             // i%3!=0 or i<2
@@ -105,7 +111,7 @@ export default function Home() {
           </iframe>
       </div> 
         <Button className="w-full" onClick={async () => handleClicked("Than kyou! You have now been deeply thanked!")} >
-          Click me to thank you</Button>
+          Click me to get a thank you</Button>
           <div className="text-center opacity-30">TradAesthetics (傳統美感) Inc. © {currentYear}</div>
     </div>
   );
