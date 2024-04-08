@@ -6,29 +6,6 @@ const BASE_URL = "https://hao.gongxifacai.win/";
 const messageA = "Image copied(图片已复制)";
 const messageB = "Image URL copied(图片链接已复制)";
 
-async function copyImgToClipboard(imgUrl: string) {
-  const input = getRandomStringFromArray(randomGreetings);
-  try {
-    const data = await fetch(imgUrl);
-    const blob = await data.blob();
-    console.log('Image fetched, url:', imgUrl);
-    await navigator.clipboard.write([
-      new ClipboardItem({
-        [blob.type]: blob,
-      }),
-    ]);
-    alert(input + "\n" + messageA);
-  } catch (err) {
-    try {
-      await navigator.clipboard.writeText(imgUrl);
-      alert(input + "\n" + messageB);
-      console.error('Failed on image, just copying url:', err);
-    } catch (e) {
-      alert('Failed to copy image and url:' + e);
-    }
-  }
-}
-
 const CopyableImage = ({ src, alt }: { src: string, alt: string}) => {
   return (
     <div className="flex flex-col justify-center items-center gap-2">
