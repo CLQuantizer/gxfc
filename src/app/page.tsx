@@ -33,7 +33,24 @@ const CopyableImage = ({ src, alt }: { src: string, alt: string}) => {
   return (
     <div className="flex flex-col justify-center items-center gap-2">
       <img src={src} alt={alt} className="backdrop-shadow mt-12 hover:scale-105 hover:cursor-grab p-0.5 rounded"/>
-      <Button className="w-24" onClick={async () => await copyImgToClipboard(BASE_URL + src)}>copy image</Button>
+      <div className="flex gap-2">
+        <button className="px-2 bg-red-400 border-4 border-green-500"  onClick={async () => {
+          const url = BASE_URL + src;
+          const data = await fetch(url);
+          const blob = await data.blob();
+          console.log('Image fetched, url:', url);
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              [blob.type]: blob,
+            })])
+          alert(messageA);
+          }}>copy image</button>
+        <button className="px-2 bg-green-400 border-4 border-red-500" 
+          onClick={async () => {
+            await navigator.clipboard.writeText(BASE_URL + src)
+            alert(messageB);
+            }}>copy url</button>
+      </div>
     </div>
   );
 };
