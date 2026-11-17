@@ -1,0 +1,22 @@
+{
+	// hao.gongxifacai.win — Next.js 14 static export, Workers Static Assets.
+	// No Worker script (assets-only). Pages project "gxfc" is kept for rollback.
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "hao",
+	"account_id": "670889de2d908caac7543143db31fae5",
+	"compatibility_date": "2026-11-17",
+	"workers_dev": true,
+	"preview_urls": true,
+	"assets": {
+		"directory": "./out",
+		"html_handling": "drop-trailing-slash",
+		"not_found_handling": "404-page"
+	},
+	"routes": [
+		{ "pattern": "hao.gongxifacai.win/*", "zone_name": "gongxifacai.win" }
+	],
+	"observability": {
+		"enabled": true,
+		"traces": { "enabled": true }
+	}
+}
