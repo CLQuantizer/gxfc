@@ -1,6 +1,6 @@
 {
 	// hao.gongxifacai.win — Next.js 14 static export, Workers Static Assets.
-	// No Worker script (assets-only). Pages project "gxfc" is kept for rollback.
+	// No Worker script (assets-only). Hostname is a Workers Custom Domain.
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "hao",
 	"account_id": "670889de2d908caac7543143db31fae5",
@@ -13,7 +13,7 @@
 		"not_found_handling": "404-page"
 	},
 	"routes": [
-		{ "pattern": "hao.gongxifacai.win/*", "zone_name": "gongxifacai.win" }
+		{ "pattern": "hao.gongxifacai.win", "custom_domain": true }
 	],
 	"observability": {
 		"enabled": true,
